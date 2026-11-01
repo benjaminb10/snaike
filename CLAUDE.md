@@ -20,6 +20,7 @@ A slither.io-style multiplayer game (UI and content in English): the player is a
 - `npm run fetch-logos`: downloads the logos from `src/data/catalog.json` into `public/logos/`.
 - `node scripts/multi.mjs [url]`: two headless browsers in the same arena (they see each other, FPS, bandwidth). Needs a dev build (`window.game`).
 - `node scripts/shoot.mjs [url]`: automatic headless game (installed Chrome), desktop + mobile screenshots in `.playwright-mcp/`, FPS and console errors.
+- `ADMIN_KEY=… npm run stats -- <server url>`: sponsor views and clicks per placement.
 - `npx tsx scripts/coil-test.ts`: measures the hole left in the middle of a full-speed coil.
 
 ## Data
@@ -35,6 +36,9 @@ A slither.io-style multiplayer game (UI and content in English): the player is a
 - Any food movement must go through `moveFood()` (shared client/server), and any server-side speed change must set `f.dirty = true`, otherwise the client drifts.
 - Coil (`steer()` in world.ts, shared client/server): turning at full lock in the same direction tightens up to x1.8 (`COIL_BONUS`, `COIL_TURNS`), only after half a turn, to choke an encircled snake.
 - Cloudflare: a Durable Object WebSocket receives binary as `Blob` by default (set `binaryType = 'arraybuffer'`), and its clock does not advance on its own between incoming messages: `fixedLoop` runs at least one tick per timer wake and only uses the clock to catch up. Ticks also arrive in bursts of about 100 ms, hence the sliding clock offset and the softer correction for other snakes. Smoothness metric: second difference of positions per frame (p95 ≈ 0.4 to 0.7 px).
+
+## Analytics
+- Cloudflare Web Analytics (cookieless, so no consent banner) via the beacon script at the end of `index.html` and `advertise.html`. No Google Analytics or Tag Manager: they would require a GDPR cookie banner in front of the game.
 
 ## Sponsors and ads
 - House products and plans: `src/sponsors-data.ts`. Placements: menu rail, game over card (plus a permanent "advertise" link), giant logo in the middle of the arena (Gold tier, 45 s rotation based on the clock). Client: `src/sponsors.ts`; server: `server/sponsors.ts` (paid sponsors and daily views/clicks per placement).

@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "fetch-logos": "node scripts/fetch-logos.mjs",
     "deploy:cf": "wrangler deploy",
-    "dev:cf": "wrangler dev --port 8797"
+    "dev:cf": "wrangler dev --port 8797",
+    "stats": "node scripts/stats.mjs"
   },
   "type": "module",
   "devDependencies": {

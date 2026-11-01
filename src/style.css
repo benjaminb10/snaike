@@ -561,6 +561,25 @@ body.touch.playing #mute { display: none; }
   .title { font-size: 46px; }
 }
 body:not(.playing) #mute { bottom: calc(64px + var(--safe-b)); }
+.gh-link {
+  position: fixed;
+  z-index: 20;
+  left: calc(108px + var(--safe-l));
+  bottom: calc(64px + var(--safe-b));
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  background: rgba(7, 7, 13, 0.6);
+  text-decoration: none;
+}
+.gh-link svg { width: 12px; height: 12px; }
+.gh-link:hover { color: var(--ink); border-color: rgba(255, 255, 255, 0.3); }
 
 /* ---------- Têtes qui surgissent ("Toasty!") ---------- */
 .pop {

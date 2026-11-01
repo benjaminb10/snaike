@@ -28,7 +28,7 @@ A slither.io-style multiplayer game (UI and content in English): the player is a
 - Logos: svgl.app (color) first, otherwise Simple Icons (`si:<slug>`). Prefer svgl's "light" variant (dark logo): icons sit on a white background.
 
 ## Pitfalls
-- Canvas context loss (GPU memory pressure, many tabs): the browser restores the canvas but every cached sprite canvas comes back blank, so the arena turns black while the DOM HUD keeps updating. `Renderer.rebuild()` clears the caches (`resetSprites()`) on `contextrestored` and via a `isContextLost()` watch. Any new sprite cache must be cleared there too.
+- Canvas context loss (GPU memory pressure, many tabs): the browser may restore the canvas with every cached sprite canvas blank (arena turns black while the DOM HUD keeps updating), or never restore it. `Renderer` watches `isContextLost()`: on loss it switches to standard resolution, on restore `rebuild()` clears the caches (`resetSprites()`) without resizing (resizing re-requests the memory and loops), and if the context stays lost 1.5 s it swaps in a fresh canvas (at most 3 times, otherwise a saturated browser flashes). Any new sprite cache must be cleared in `resetSprites()`. A browser that loses even a trivial canvas (seen in Dia with many tabs) cannot be fixed from the page: restart it.
 - A browser tab in the background pauses requestAnimationFrame, so the game stops: test with `scripts/shoot.mjs`.
 - `window.game` (world, renderer, input) only exists in dev, handy to drive tests.
 - Dropped orbs: those from a death are permanent (only the `DROP_CAP` ceiling removes the oldest), boost orbs expire after 45 s. Do not give death remains a short lifetime: a player who encircles a snake must find the loot.

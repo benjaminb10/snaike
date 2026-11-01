@@ -169,6 +169,7 @@ export const HUMAN_W = 30;
 export const HUMAN_H = 42;
 const HAIRS = ['#1B130C', '#4A2C17', '#D9B26A', '#A63A1E', '#9A9AA5', '#111111'];
 const humanCache = new Map<number, HTMLCanvasElement>();
+const HUMAN_CACHE_MAX = 1600; // au-dessus des 1 536 combinaisons possibles : jamais de recréation en boucle
 
 /**
  * Petit humain vu de trois quarts : visage (yeux, bouche), cheveux, jean, accessoire de bureau.
@@ -178,7 +179,12 @@ const humanCache = new Map<number, HTMLCanvasElement>();
 export function human(skin: number, shirt: number, frame: number, panic: boolean, prop: number) {
   const key = (((skin * 16 + shirt) * 4 + frame) * 2 + (panic ? 1 : 0)) * 4 + prop;
   let c = humanCache.get(key);
-  if (c) return c;
+  if (c) {
+    // Plus récemment utilisé en fin de Map (ordre d'insertion), pour évincer les plus anciens.
+    humanCache.delete(key);
+    humanCache.set(key, c);
+    return c;
+  }
   const S = 2;
   const fig = canvas(HUMAN_W * S, HUMAN_H * S);
   const g = fig.getContext('2d')!;
@@ -304,6 +310,9 @@ export function human(skin: number, shirt: number, frame: number, panic: boolean
   o.globalCompositeOperation = 'source-over';
   o.drawImage(fig, 0, 0);
   humanCache.set(key, c);
+  // Plafond : sans lui, des milliers de petites images finissent par saturer la mémoire graphique
+  // (canvas perdu, écran noir au bout d'un moment).
+  if (humanCache.size > HUMAN_CACHE_MAX) humanCache.delete(humanCache.keys().next().value!);
   return c;
 }
 

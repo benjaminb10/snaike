@@ -20,20 +20,6 @@ interface Particle {
   text?: string;
 }
 
-const flipCache = new Map<HTMLCanvasElement, HTMLCanvasElement>();
-function flipped(src: HTMLCanvasElement) {
-  let c = flipCache.get(src);
-  if (c) return c;
-  c = document.createElement('canvas');
-  c.width = src.width;
-  c.height = src.height;
-  const g = c.getContext('2d')!;
-  g.scale(-1, 1);
-  g.drawImage(src, -src.width, 0);
-  flipCache.set(src, c);
-  return c;
-}
-
 export class Renderer {
   canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
@@ -113,7 +99,6 @@ export class Renderer {
   rebuild() {
     this.lost = false;
     resetSprites();
-    flipCache.clear();
     this.pattern = this.ctx.createPattern(hexPattern(), 'repeat')!;
     if (this.lowRes && this.dpr > 1) this.resize();
   }
@@ -389,8 +374,7 @@ export class Renderer {
   private drawHuman(g: CanvasRenderingContext2D, f: ArenaView['foods'][number], t: number) {
     const panic = f.state === 1 || f.sucked > 0;
     const frame = (f.phase | 0) & 3;
-    let img = human(f.skin, f.shirt, frame, panic, f.prop);
-    if (f.dir < 0) img = flipped(img);
+    const img = human(f.skin, f.shirt, frame, panic, f.prop);
     const w = HUMAN_W * 0.85;
     const h = HUMAN_H * 0.85;
     const bob = panic ? Math.abs(Math.sin(f.phase * 1.6)) * 2.5 : 0;
@@ -403,7 +387,14 @@ export class Renderer {
       g.restore();
       return;
     }
-    g.drawImage(img, f.x - w / 2, f.y - h / 2 - bob, w, h);
+    if (f.dir < 0) {
+      // Retourné au dessin plutôt qu'en cache : une image de moins par apparence en mémoire graphique.
+      g.save();
+      g.translate(f.x, 0);
+      g.scale(-1, 1);
+      g.drawImage(img, -w / 2, f.y - h / 2 - bob, w, h);
+      g.restore();
+    } else g.drawImage(img, f.x - w / 2, f.y - h / 2 - bob, w, h);
     if (f.sayT > 0 && f.say >= 0 && this.cam.zoom > 0.5) {
       this.drawShout(g, f.x, f.y - h / 2 - 6 - bob, SHOUTS[f.say], f.sayT);
     } else if (f.state === 1 && this.cam.zoom > 0.55) {

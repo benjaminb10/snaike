@@ -35,7 +35,7 @@ function flipped(src: HTMLCanvasElement) {
 }
 
 export class Renderer {
-  readonly canvas: HTMLCanvasElement;
+  canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private dpr = 1;
   w = 0;
@@ -60,8 +60,23 @@ export class Renderer {
     addEventListener('resize', () => this.resize());
     // Contexte graphique perdu puis rendu par le navigateur (mémoire GPU saturée, onglets nombreux) :
     // tous les canvas en cache sont vides, on les reconstruit.
+    this.listen(canvas);
+  }
+
+  private listen(canvas: HTMLCanvasElement) {
     canvas.addEventListener('contextlost', () => this.onLost());
     canvas.addEventListener('contextrestored', () => this.rebuild());
+  }
+
+  /** Contexte jamais rendu (Dia, Chrome avec beaucoup d'onglets) : un canvas neuf obtient un contexte neuf. */
+  private replaceCanvas() {
+    const fresh = this.canvas.cloneNode(false) as HTMLCanvasElement;
+    this.canvas.replaceWith(fresh);
+    this.canvas = fresh;
+    this.ctx = fresh.getContext('2d', { alpha: false })!;
+    this.listen(fresh);
+    this.resize();
+    this.rebuild();
   }
 
   private lost = false;
@@ -75,8 +90,8 @@ export class Renderer {
     const lost = this.ctx.isContextLost?.() ?? false;
     if (lost) {
       this.onLost();
-      // Toujours perdu après 1,5 s : on réduit le canvas nous-mêmes pour demander moins de mémoire.
-      if (now - this.lostAt > 1500 && this.dpr > 1) this.resize();
+      // Toujours perdu après 1,5 s : on le remplace par un canvas neuf, en définition standard.
+      if (now - this.lostAt > 1500) this.replaceCanvas();
     } else if (this.lost) this.rebuild();
   }
 

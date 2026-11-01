@@ -60,31 +60,46 @@ export class Renderer {
     addEventListener('resize', () => this.resize());
     // Contexte graphique perdu puis rendu par le navigateur (mémoire GPU saturée, onglets nombreux) :
     // tous les canvas en cache sont vides, on les reconstruit.
+    canvas.addEventListener('contextlost', () => this.onLost());
     canvas.addEventListener('contextrestored', () => this.rebuild());
   }
 
   private lost = false;
+  private lowRes = false;
   private checkAt = 0;
 
-  /** Filet de sécurité si l'événement ne vient pas : surveille le contexte deux fois par seconde. */
+  /** Filet de sécurité si les événements ne viennent pas : surveille le contexte deux fois par seconde. */
   private watchContext(now: number) {
     if (now < this.checkAt) return;
     this.checkAt = now + 500;
     const lost = this.ctx.isContextLost?.() ?? false;
-    if (lost) this.lost = true;
-    else if (this.lost) this.rebuild();
+    if (lost) {
+      this.onLost();
+      // Toujours perdu après 1,5 s : on réduit le canvas nous-mêmes pour demander moins de mémoire.
+      if (now - this.lostAt > 1500 && this.dpr > 1) this.resize();
+    } else if (this.lost) this.rebuild();
   }
 
+  private lostAt = 0;
+
+  /** Mémoire graphique saturée : on passe en définition standard (4 fois moins de mémoire en Retina). */
+  private onLost() {
+    if (!this.lost) this.lostAt = performance.now();
+    this.lost = true;
+    this.lowRes = true;
+  }
+
+  /** Contexte rendu : les canvas en cache sont vides, on les refait. Pas de resize inutile, il redemanderait la mémoire. */
   rebuild() {
     this.lost = false;
     resetSprites();
     flipCache.clear();
     this.pattern = this.ctx.createPattern(hexPattern(), 'repeat')!;
-    this.resize();
+    if (this.lowRes && this.dpr > 1) this.resize();
   }
 
   resize() {
-    this.dpr = Math.min(devicePixelRatio || 1, 2);
+    this.dpr = this.lowRes ? 1 : Math.min(devicePixelRatio || 1, 2);
     this.w = innerWidth;
     this.h = innerHeight;
     this.canvas.width = Math.round(this.w * this.dpr);

@@ -91,11 +91,16 @@ export class Renderer {
     if (lost) {
       this.onLost();
       // Toujours perdu après 1,5 s : on le remplace par un canvas neuf, en définition standard.
-      if (now - this.lostAt > 1500) this.replaceCanvas();
+      // Au plus 3 fois : dans un navigateur saturé, remplacer en boucle ferait clignoter l'écran.
+      if (now - this.lostAt > 1500 && this.replaced < 3) {
+        this.replaced++;
+        this.replaceCanvas();
+      }
     } else if (this.lost) this.rebuild();
   }
 
   private lostAt = 0;
+  private replaced = 0;
 
   /** Mémoire graphique saturée : on passe en définition standard (4 fois moins de mémoire en Retina). */
   private onLost() {

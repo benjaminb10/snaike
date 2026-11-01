@@ -3,7 +3,7 @@ import { WORLD_R } from '../game/config';
 import { TAU, clamp, lerp, rand } from '../game/math';
 import { HUMAN, LOGO, SHIRTS, SHOUTS, type GameEvent, type ArenaView, type Snake } from '../game/world';
 import type { Billboard } from '../sponsors';
-import { HUMAN_H, HUMAN_W, ball, glow, headBadge, hexPattern, human, logoToken, rgba, shadowSprite } from './sprites';
+import { HUMAN_H, HUMAN_W, ball, glow, headBadge, hexPattern, human, logoToken, resetSprites, rgba, shadowSprite } from './sprites';
 
 const BB = 900; // rayon d'influence du panneau sponsor (pour le culling)
 
@@ -58,6 +58,29 @@ export class Renderer {
     this.pattern = this.ctx.createPattern(hexPattern(), 'repeat')!;
     this.resize();
     addEventListener('resize', () => this.resize());
+    // Contexte graphique perdu puis rendu par le navigateur (mémoire GPU saturée, onglets nombreux) :
+    // tous les canvas en cache sont vides, on les reconstruit.
+    canvas.addEventListener('contextrestored', () => this.rebuild());
+  }
+
+  private lost = false;
+  private checkAt = 0;
+
+  /** Filet de sécurité si l'événement ne vient pas : surveille le contexte deux fois par seconde. */
+  private watchContext(now: number) {
+    if (now < this.checkAt) return;
+    this.checkAt = now + 500;
+    const lost = this.ctx.isContextLost?.() ?? false;
+    if (lost) this.lost = true;
+    else if (this.lost) this.rebuild();
+  }
+
+  rebuild() {
+    this.lost = false;
+    resetSprites();
+    flipCache.clear();
+    this.pattern = this.ctx.createPattern(hexPattern(), 'repeat')!;
+    this.resize();
   }
 
   resize() {
@@ -178,6 +201,7 @@ export class Renderer {
   }
 
   render(world: ArenaView, dt: number) {
+    this.watchContext(performance.now());
     const g = this.ctx;
     const t = world.time;
     const z = this.cam.zoom;

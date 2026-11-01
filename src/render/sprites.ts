@@ -308,7 +308,7 @@ export function human(skin: number, shirt: number, frame: number, panic: boolean
 }
 
 /** Ombre portée commune aux humains et aux icônes. */
-export const shadowSprite = (() => {
+function makeShadow() {
   const c = canvas(32, 12);
   const g = c.getContext('2d')!;
   const grad = g.createRadialGradient(16, 6, 0, 16, 6, 16);
@@ -318,7 +318,21 @@ export const shadowSprite = (() => {
   g.scale(1, 0.375);
   g.fillRect(0, 0, 32, 32);
   return c;
-})();
+}
+export let shadowSprite = makeShadow();
+
+/**
+ * Vide les sprites pré-rendus : après une perte du contexte graphique (mémoire GPU saturée), le navigateur
+ * rend des canvas vides et le jeu deviendrait noir pour de bon. Ils seront redessinés à la demande.
+ */
+export function resetSprites() {
+  ballCache.clear();
+  glowCache.clear();
+  tokenCache.clear();
+  badgeCache.clear();
+  humanCache.clear();
+  shadowSprite = makeShadow();
+}
 
 /** Motif de fond : grille hexagonale façon circuit, très discrète. */
 export function hexPattern() {

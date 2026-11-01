@@ -1,0 +1,11 @@
+{
+  "name": "SNAIKE",
+  "short_name": "SNAIKE",
+  "description": "Les IA dévorent les humains et les startups.",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#07070D",
+  "theme_color": "#07070D",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

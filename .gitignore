@@ -1,0 +1,13 @@
+node_modules
+dist
+.DS_Store
+*.local
+.playwright-mcp
+dist-server
+data
+.vercel
+.wrangler
+
+# Notes et scripts privés (non publiés)
+CLAUDE.local.md
+/deploy

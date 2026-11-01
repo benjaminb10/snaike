@@ -1,0 +1,33 @@
+{
+  "name": "slitherai",
+  "version": "0.1.0",
+  "description": "Slither.io o\u00f9 les IA d\u00e9vorent les humains et les startups",
+  "scripts": {
+    "dev": "vite",
+    "server": "PORT=5289 tsx watch server/index.ts",
+    "build": "tsc --noEmit && vite build && npm run build:server",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --format=esm --target=node22 --outfile=dist-server/index.mjs --external:bufferutil --external:utf-8-validate --banner:js=\"import{createRequire}from'module';const require=createRequire(import.meta.url);\"",
+    "start": "node dist-server/index.mjs",
+    "preview": "vite preview",
+    "fetch-logos": "node scripts/fetch-logos.mjs",
+    "deploy:cf": "wrangler deploy",
+    "dev:cf": "wrangler dev --port 8797"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261101.1",
+    "@types/node": "^26.6.6",
+    "@types/ws": "^8.18.2",
+    "esbuild": "^0.28.2",
+    "playwright": "^1.63.0",
+    "simple-icons": "^16.36.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5",
+    "wrangler": "^4.156.0"
+  },
+  "private": true,
+  "dependencies": {
+    "ws": "^8.22.1"
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07070D" />
+    <meta name="description" content="Put your brand in SNAIKE, the multiplayer game where AIs devour humans and startups. From $19 for 30 days." />
+    <title>Advertise in SNAIKE</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SNAIKE" />
+    <meta property="og:title" content="Advertise in SNAIKE" />
+    <meta property="og:description" content="Put your brand in the arena: menu, game over screen or a giant logo in the center. From $19 for 30 days." />
+    <meta property="og:url" content="https://playsnaike.vercel.app/advertise.html" />
+    <meta property="og:image" content="https://playsnaike.vercel.app/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SNAIKE: the AIs are hungry. You're one of them." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Advertise in SNAIKE" />
+    <meta name="twitter:description" content="Put your brand in the arena: menu, game over screen or a giant logo in the center. From $19 for 30 days." />
+    <meta name="twitter:image" content="https://playsnaike.vercel.app/og.jpg" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@600;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="top mono">
+      <a href="./" class="logo">SN<span>AI</span>KE</a>
+      <a href="./" class="play">PLAY NOW</a>
+    </header>
+
+    <main id="app">
+      <!-- Accueil annonceurs -->
+      <section id="pitch">
+        <div class="hero">
+          <div class="kicker mono">ADVERTISE</div>
+          <h1>Get your brand <span>eaten by every AI.</span></h1>
+          <p class="lead">SNAIKE is a multiplayer snake game where Claude, ChatGPT, Gemini and Grok devour humans and startups. Put your logo where every player looks, starting at $19 for 30 days.</p>
+          <div class="reach mono" id="reach"></div>
+        </div>
+
+        <div class="tiers" id="tiers"></div>
+
+        <div class="how">
+          <h2>How it works</h2>
+          <ol>
+            <li><b>Pick a plan and pay.</b> Stripe checkout asks for your brand name, website and a short tagline.</li>
+            <li><b>You're live within a minute.</b> Your logo appears in the game automatically, for 30 days.</li>
+            <li><b>Watch your numbers.</b> After payment you get a private link with your views and clicks, updated live.</li>
+          </ol>
+        </div>
+
+        <div class="faq">
+          <h2>Questions</h2>
+          <details><summary>Where does my logo come from?</summary><p>We use your website's icon. Want a custom logo or a different color? Message us after payment and we'll swap it.</p></details>
+          <details><summary>Is it a subscription?</summary><p>No. One payment, 30 days in the game. Renew whenever you want.</p></details>
+          <details><summary>What can't be advertised?</summary><p>Anything illegal, adult, gambling or hateful. We'll refund and remove brands that don't fit.</p></details>
+          <details><summary>Something else?</summary><p><a id="contact" target="_blank" rel="noopener">Message us on WhatsApp</a>, fast reply.</p></details>
+        </div>
+      </section>
+
+      <!-- Après paiement -->
+      <section id="thanks" hidden>
+        <div class="hero">
+          <div class="kicker mono">PAYMENT RECEIVED</div>
+          <h1>You're <span>in the arena.</span></h1>
+          <p class="lead" id="thanks-text">Setting up your campaign…</p>
+          <a class="btn" id="thanks-link" hidden>SEE MY STATS</a>
+        </div>
+      </section>
+
+      <!-- Tableau de bord d'un sponsor -->
+      <section id="stats" hidden>
+        <div class="hero">
+          <div class="kicker mono" id="st-kicker">YOUR CAMPAIGN</div>
+          <h1 id="st-name"></h1>
+          <p class="lead" id="st-until"></p>
+        </div>
+        <div class="kpis" id="st-kpis"></div>
+        <div class="chart" id="st-chart"></div>
+        <div class="places" id="st-places"></div>
+        <p class="note mono">Keep this link private: anyone with it can see your numbers.</p>
+      </section>
+    </main>
+
+    <script type="module" src="/src/advertise.ts"></script>
+  </body>
+</html>

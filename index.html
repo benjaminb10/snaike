@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#07070D" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Play as Claude, ChatGPT, Gemini or Grok and devour humans and startups. Free multiplayer snake game in your browser." />
+    <title>SNAIKE · The AIs are hungry</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SNAIKE" />
+    <meta property="og:title" content="SNAIKE · The AIs are hungry" />
+    <meta property="og:description" content="Play as Claude, ChatGPT, Gemini or Grok and devour humans and startups. Free multiplayer snake game in your browser." />
+    <meta property="og:url" content="https://playsnaike.vercel.app/" />
+    <meta property="og:image" content="https://playsnaike.vercel.app/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SNAIKE: the AIs are hungry. You're one of them." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SNAIKE · The AIs are hungry" />
+    <meta name="twitter:description" content="Play as Claude, ChatGPT, Gemini or Grok and devour humans and startups. Free multiplayer snake game in your browser." />
+    <meta name="twitter:image" content="https://playsnaike.vercel.app/og.jpg" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@600;800;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <!-- Chargement -->
+    <div id="loader" class="screen">
+      <div class="loader-title">SN<span>AI</span>KE</div>
+      <div class="loader-bar"><i></i></div>
+      <div class="loader-text mono">Loading victims… <b>0%</b></div>
+    </div>
+
+    <!-- Menu -->
+    <div id="menu" class="screen hidden">
+      <div class="menu-top mono">
+        <span>ARENA 01</span>
+        <span class="blink" id="live">● CONNECTING</span>
+        <span id="menu-pop">8,182,004,117 humans on the menu</span>
+      </div>
+      <div class="menu-center">
+        <h1 class="title" data-text="SNAIKE">SN<span>AI</span>KE</h1>
+        <p class="tagline">The AIs are hungry. <b>You're one of them.</b></p>
+
+        <div class="picker" id="picker"></div>
+
+        <form class="play-row" id="play-form" autocomplete="off">
+          <input id="nick" maxlength="16" placeholder="Your nickname (optional)" spellcheck="false" />
+          <button type="submit" class="btn-play" id="btn-play"><span>PLAY</span></button>
+        </form>
+        <p class="hint mono desktop-only">MOUSE to steer · CLICK or SPACE to boost · 1 to 9 to pick your AI</p>
+        <p class="hint mono touch-only">DRAG to steer · BUTTON or 2ND FINGER to boost</p>
+        <div class="sp-rail" id="sp-rail"></div>
+      </div>
+      <div class="ticker">
+        <div class="ticker-label mono">ON THE MENU</div>
+        <div class="ticker-track" id="ticker"></div>
+      </div>
+    </div>
+
+    <!-- Jeu -->
+    <div id="hud" class="hidden">
+      <div class="feed" id="feed"></div>
+      <div class="board">
+        <div class="board-head mono"><span>LEADERBOARD</span><span id="alive-count"></span></div>
+        <ol id="board"></ol>
+      </div>
+      <div class="toasts" id="toasts"></div>
+      <div class="pop" id="pop"><div class="pop-say"></div><img alt="" /><div class="pop-name mono"></div></div>
+      <div class="combo" id="combo"><b>x0</b><span>COMBO</span></div>
+      <div class="stats">
+        <div class="score-label mono">LENGTH</div>
+        <div class="score mono" id="score">0</div>
+        <div class="chips mono">
+          <span><i class="dot h"></i><b id="st-humans">0</b> humans</span>
+          <span><i class="dot l"></i><b id="st-logos">0</b> startups</span>
+          <span><i class="dot k"></i><b id="st-kills">0</b> kills</span>
+          <span class="rank">#<b id="st-rank">-</b></span>
+        </div>
+      </div>
+      <canvas id="minimap" width="300" height="300"></canvas>
+      <button id="boost-btn" class="touch-only" aria-label="Boost">BOOST</button>
+      <div id="joy" class="hidden"><i></i></div>
+    </div>
+
+    <button id="mute" class="mono" aria-label="Mute">SOUND ON</button>
+
+    <!-- Mort -->
+    <div id="death" class="screen hidden">
+      <div class="death-card">
+        <div class="death-kicker mono" id="death-kicker">GAME OVER</div>
+        <h2 class="death-title" id="death-title">CUT OFF</h2>
+        <p class="death-sub" id="death-sub"></p>
+        <div class="death-stats" id="death-stats"></div>
+        <div class="portfolio-head mono"><span>ACQUISITION PORTFOLIO</span><span id="portfolio-count"></span></div>
+        <div class="portfolio" id="portfolio"></div>
+        <div class="sp-card" id="sp-death"></div>
+        <div class="death-actions">
+          <button class="btn-play" id="btn-again"><span>PLAY AGAIN</span></button>
+          <button class="btn-ghost" id="btn-menu">SWITCH AI</button>
+        </div>
+        <p class="hint mono desktop-only">ENTER to play again</p>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

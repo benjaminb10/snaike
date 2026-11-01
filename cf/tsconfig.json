@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "types": ["@cloudflare/workers-types", "vite/client"], "noEmit": true },
+  "include": ["./**/*.ts", "../server/room.ts", "../server/sponsors.ts", "../src/game", "../src/data", "../src/net/protocol.ts", "../src/sponsors-data.ts"]
+}

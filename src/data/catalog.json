@@ -1,0 +1,613 @@
+{
+  "snakes": [
+    {
+      "id": "claude",
+      "name": "Claude",
+      "src": "svgl:https://svgl.app/library/claude-ai-icon.svg",
+      "maker": "Anthropic",
+      "colors": [
+        "#D97757",
+        "#F2E3D0",
+        "#B5532F"
+      ],
+      "glow": "#FF8A5C",
+      "models": [
+        "Claude Opus 5.5",
+        "Claude Sonnet 5.5",
+        "Claude Haiku 5.5",
+        "Claude Fable 5.1",
+        "Claude Code"
+      ]
+    },
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "src": "svgl:https://svgl.app/library/openai.svg",
+      "maker": "OpenAI",
+      "colors": [
+        "#10A37F",
+        "#E9FFF7",
+        "#0B6E56"
+      ],
+      "glow": "#2BFFC2",
+      "models": [
+        "GPT-6",
+        "GPT-5.5 Pro",
+        "o5-mini",
+        "ChatGPT Agent",
+        "Codex"
+      ]
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "src": "svgl:https://svgl.app/library/gemini.svg",
+      "maker": "Google",
+      "colors": [
+        "#4285F4",
+        "#9B72CB",
+        "#D96570",
+        "#9B72CB"
+      ],
+      "glow": "#8FA8FF",
+      "models": [
+        "Gemini 3 Ultra",
+        "Gemini 3 Pro",
+        "Gemini Flash",
+        "Nano Banana",
+        "Veo 4"
+      ]
+    },
+    {
+      "id": "grok",
+      "name": "Grok",
+      "src": "svgl:https://svgl.app/library/grok-light.svg",
+      "maker": "xAI",
+      "colors": [
+        "#141414",
+        "#F4F4F4",
+        "#2A2A2A"
+      ],
+      "glow": "#FFFFFF",
+      "models": [
+        "Grok 5",
+        "Grok 5 Heavy",
+        "Grok Imagine",
+        "SuperGrok"
+      ]
+    },
+    {
+      "id": "meta",
+      "name": "Meta AI",
+      "src": "svgl:https://svgl.app/library/meta.svg",
+      "maker": "Meta",
+      "colors": [
+        "#0081FB",
+        "#5B2EFF",
+        "#00C6FF"
+      ],
+      "glow": "#3DA2FF",
+      "models": [
+        "Llama 5",
+        "Llama 5 Behemoth",
+        "Meta AI"
+      ]
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral",
+      "src": "si:mistralai",
+      "maker": "Mistral AI",
+      "colors": [
+        "#FA520F",
+        "#FFAF00",
+        "#E10500",
+        "#FFD800"
+      ],
+      "glow": "#FF8A00",
+      "models": [
+        "Mistral Large 4",
+        "Le Chat",
+        "Magistral",
+        "Codestral"
+      ]
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "src": "svgl:https://svgl.app/library/deepseek.svg",
+      "maker": "DeepSeek",
+      "colors": [
+        "#4D6BFE",
+        "#1B2B8F",
+        "#9DB0FF"
+      ],
+      "glow": "#6F8BFF",
+      "models": [
+        "DeepSeek V4",
+        "DeepSeek R3"
+      ]
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "src": "svgl:https://svgl.app/library/perplexity.svg",
+      "maker": "Perplexity",
+      "colors": [
+        "#20808D",
+        "#091717",
+        "#5FD3D3"
+      ],
+      "glow": "#3FE0E0",
+      "models": [
+        "Perplexity Pro",
+        "Comet",
+        "Sonar"
+      ]
+    },
+    {
+      "id": "jev",
+      "name": "Jev",
+      "src": "keep:public/logos/jev.svg",
+      "maker": "TypeSafe AI",
+      "colors": [
+        "#E351BE",
+        "#161616",
+        "#F4A6DD"
+      ],
+      "glow": "#FF5FD2",
+      "models": [
+        "Jev",
+        "Jev Pro",
+        "Jev mini",
+        "Jev decide-1"
+      ]
+    }
+  ],
+  "victims": [
+    {
+      "id": "photoshop",
+      "name": "Photoshop",
+      "src": "svgl:https://svgl.app/library/photoshop.svg",
+      "epitaph": "Retouching? Just prompt it."
+    },
+    {
+      "id": "illustrator",
+      "name": "Illustrator",
+      "src": "svgl:https://svgl.app/library/illustrator.svg",
+      "epitaph": "Vectorized by a model."
+    },
+    {
+      "id": "premiere",
+      "name": "Premiere Pro",
+      "src": "svgl:https://svgl.app/library/premiere.svg",
+      "epitaph": "The edit cuts itself now."
+    },
+    {
+      "id": "aftereffects",
+      "name": "After Effects",
+      "src": "svgl:https://svgl.app/library/after-effects.svg",
+      "epitaph": "Veo does the VFX."
+    },
+    {
+      "id": "lightroom",
+      "name": "Lightroom",
+      "src": "svgl:https://svgl.app/library/lightroom.svg",
+      "epitaph": "Color graded in one sentence."
+    },
+    {
+      "id": "indesign",
+      "name": "InDesign",
+      "src": "svgl:https://svgl.app/library/indesign.svg",
+      "epitaph": "Layouts generate themselves."
+    },
+    {
+      "id": "audition",
+      "name": "Audition",
+      "src": "svgl:https://svgl.app/library/audition.svg",
+      "epitaph": "Audio cleans itself up."
+    },
+    {
+      "id": "canva",
+      "name": "Canva",
+      "src": "svgl:https://svgl.app/library/canva.svg",
+      "epitaph": "One prompt, ten visuals."
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "src": "svgl:https://svgl.app/library/figma.svg",
+      "epitaph": "The UI ships straight to code."
+    },
+    {
+      "id": "sketch",
+      "name": "Sketch",
+      "src": "si:sketch",
+      "epitaph": "Designed by nobody."
+    },
+    {
+      "id": "stackoverflow",
+      "name": "Stack Overflow",
+      "src": "svgl:https://svgl.app/library/stackoverflow.svg",
+      "epitaph": "Question closed: duplicate of AI."
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "src": "si:grammarly",
+      "epitaph": "Any LLM corrects it better."
+    },
+    {
+      "id": "quora",
+      "name": "Quora",
+      "src": "si:quora",
+      "epitaph": "Nobody asks anymore."
+    },
+    {
+      "id": "duolingo",
+      "name": "Duolingo",
+      "src": "si:duolingo",
+      "epitaph": "The owl lost its streak."
+    },
+    {
+      "id": "fiverr",
+      "name": "Fiverr",
+      "src": "si:fiverr",
+      "epitaph": "The $5 freelancer now costs $0.002."
+    },
+    {
+      "id": "upwork",
+      "name": "Upwork",
+      "src": "si:upwork",
+      "epitaph": "Gig assigned to an agent."
+    },
+    {
+      "id": "googletranslate",
+      "name": "Google Translate",
+      "src": "si:googletranslate",
+      "epitaph": "40 languages, zero clicks."
+    },
+    {
+      "id": "deepl",
+      "name": "DeepL",
+      "src": "si:deepl",
+      "epitaph": "Translated, no subscription."
+    },
+    {
+      "id": "coursera",
+      "name": "Coursera",
+      "src": "svgl:https://svgl.app/library/coursera.svg",
+      "epitaph": "The professor is a chatbot."
+    },
+    {
+      "id": "udemy",
+      "name": "Udemy",
+      "src": "svgl:https://svgl.app/library/udemy.svg",
+      "epitaph": "Courses generated on demand."
+    },
+    {
+      "id": "codecademy",
+      "name": "Codecademy",
+      "src": "si:codecademy",
+      "epitaph": "Why learn to code?"
+    },
+    {
+      "id": "khanacademy",
+      "name": "Khan Academy",
+      "src": "si:khanacademy",
+      "epitaph": "The tutor never sleeps."
+    },
+    {
+      "id": "quizlet",
+      "name": "Quizlet",
+      "src": "si:quizlet",
+      "epitaph": "Flashcards in 2 seconds."
+    },
+    {
+      "id": "wordpress",
+      "name": "WordPress",
+      "src": "svgl:https://svgl.app/library/wordpress.svg",
+      "epitaph": "Website generated in 30 seconds."
+    },
+    {
+      "id": "webflow",
+      "name": "Webflow",
+      "src": "svgl:https://svgl.app/library/webflow.svg",
+      "epitaph": "Lovable did it first."
+    },
+    {
+      "id": "wix",
+      "name": "Wix",
+      "src": "si:wix",
+      "epitaph": "One prompt, one website."
+    },
+    {
+      "id": "squarespace",
+      "name": "Squarespace",
+      "src": "si:squarespace",
+      "epitaph": "Templates? Pointless."
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "src": "svgl:https://svgl.app/library/notion.svg",
+      "epitaph": "The agent takes the notes."
+    },
+    {
+      "id": "evernote",
+      "name": "Evernote",
+      "src": "si:evernote",
+      "epitaph": "Forgotten before AI, finished by it."
+    },
+    {
+      "id": "zapier",
+      "name": "Zapier",
+      "src": "si:zapier",
+      "epitaph": "Agents automate themselves."
+    },
+    {
+      "id": "calendly",
+      "name": "Calendly",
+      "src": "svgl:https://svgl.app/library/calendly.svg",
+      "epitaph": "The assistant books the meeting."
+    },
+    {
+      "id": "mailchimp",
+      "name": "Mailchimp",
+      "src": "si:mailchimp",
+      "epitaph": "Newsletter written and sent by AI."
+    },
+    {
+      "id": "hootsuite",
+      "name": "Hootsuite",
+      "src": "si:hootsuite",
+      "epitaph": "The community manager is an agent."
+    },
+    {
+      "id": "buffer",
+      "name": "Buffer",
+      "src": "si:buffer",
+      "epitaph": "Posts scheduled by a model."
+    },
+    {
+      "id": "trello",
+      "name": "Trello",
+      "src": "svgl:https://svgl.app/library/trello.svg",
+      "epitaph": "The project manager is an agent."
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "src": "si:asana",
+      "epitaph": "Tasks assigned to agents."
+    },
+    {
+      "id": "miro",
+      "name": "Miro",
+      "src": "si:miro",
+      "epitaph": "Brainstorming solo with AI."
+    },
+    {
+      "id": "loom",
+      "name": "Loom",
+      "src": "svgl:https://svgl.app/library/loom.svg",
+      "epitaph": "Video generated with your avatar."
+    },
+    {
+      "id": "unsplash",
+      "name": "Unsplash",
+      "src": "si:unsplash",
+      "epitaph": "Photo generated, never taken."
+    },
+    {
+      "id": "pexels",
+      "name": "Pexels",
+      "src": "si:pexels",
+      "epitaph": "Stock library emptied."
+    },
+    {
+      "id": "freepik",
+      "name": "Freepik",
+      "src": "si:freepik",
+      "epitaph": "Free, but generated."
+    },
+    {
+      "id": "envato",
+      "name": "Envato",
+      "src": "si:envato",
+      "epitaph": "Templates generated on the fly."
+    },
+    {
+      "id": "behance",
+      "name": "Behance",
+      "src": "svgl:https://svgl.app/library/behance.svg",
+      "epitaph": "Portfolio filled by Midjourney."
+    },
+    {
+      "id": "dribbble",
+      "name": "Dribbble",
+      "src": "svgl:https://svgl.app/library/dribbble.svg",
+      "epitaph": "Shots generated on loop."
+    },
+    {
+      "id": "deviantart",
+      "name": "DeviantArt",
+      "src": "si:deviantart",
+      "epitaph": "Flooded with generated art."
+    },
+    {
+      "id": "artstation",
+      "name": "ArtStation",
+      "src": "si:artstation",
+      "epitaph": "No to AI? Too late."
+    },
+    {
+      "id": "medium",
+      "name": "Medium",
+      "src": "si:medium",
+      "epitaph": "Article written in 4 seconds."
+    },
+    {
+      "id": "substack",
+      "name": "Substack",
+      "src": "si:substack",
+      "epitaph": "Newsletter 100% generated."
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia",
+      "src": "si:wikipedia",
+      "epitaph": "Summarized by AI, source not found."
+    },
+    {
+      "id": "fandom",
+      "name": "Fandom",
+      "src": "si:fandom",
+      "epitaph": "The lore explained by a bot."
+    },
+    {
+      "id": "google",
+      "name": "Google Search",
+      "src": "si:google",
+      "epitaph": "Nobody searches. They ask."
+    },
+    {
+      "id": "duckduckgo",
+      "name": "DuckDuckGo",
+      "src": "svgl:https://svgl.app/library/duckduckgo.svg",
+      "epitaph": "The duck got plucked."
+    },
+    {
+      "id": "yelp",
+      "name": "Yelp",
+      "src": "si:yelp",
+      "epitaph": "Reviews generated, reviews read by AI."
+    },
+    {
+      "id": "tripadvisor",
+      "name": "Tripadvisor",
+      "src": "si:tripadvisor",
+      "epitaph": "The agent plans the trip."
+    },
+    {
+      "id": "booking",
+      "name": "Booking",
+      "src": "si:bookingdotcom",
+      "epitaph": "The agent books it for you."
+    },
+    {
+      "id": "expedia",
+      "name": "Expedia",
+      "src": "si:expedia",
+      "epitaph": "Flight booked by a model."
+    },
+    {
+      "id": "typeform",
+      "name": "Typeform",
+      "src": "si:typeform",
+      "epitaph": "The form chats by itself."
+    },
+    {
+      "id": "surveymonkey",
+      "name": "SurveyMonkey",
+      "src": "si:surveymonkey",
+      "epitaph": "Answers simulated by AI."
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "src": "si:hubspot",
+      "epitaph": "The sales rep is an agent."
+    },
+    {
+      "id": "zendesk",
+      "name": "Zendesk",
+      "src": "si:zendesk",
+      "epitaph": "Customer support: 100% agent."
+    },
+    {
+      "id": "intercom",
+      "name": "Intercom",
+      "src": "si:intercom",
+      "epitaph": "The chat answers, no human needed."
+    },
+    {
+      "id": "indeed",
+      "name": "Indeed",
+      "src": "si:indeed",
+      "epitaph": "Job listings? What jobs."
+    },
+    {
+      "id": "glassdoor",
+      "name": "Glassdoor",
+      "src": "si:glassdoor",
+      "epitaph": "No employees left to rate it."
+    },
+    {
+      "id": "shazam",
+      "name": "Shazam",
+      "src": "si:shazam",
+      "epitaph": "Every model knows the song."
+    },
+    {
+      "id": "audible",
+      "name": "Audible",
+      "src": "si:audible",
+      "epitaph": "Voice cloned in 10 seconds."
+    },
+    {
+      "id": "replit",
+      "name": "Replit",
+      "src": "svgl:https://svgl.app/library/replit.svg",
+      "epitaph": "The code writes itself."
+    },
+    {
+      "id": "leetcode",
+      "name": "LeetCode",
+      "src": "si:leetcode",
+      "epitaph": "Solved in one pass."
+    },
+    {
+      "id": "hackerrank",
+      "name": "HackerRank",
+      "src": "si:hackerrank",
+      "epitaph": "Interview aced by a bot."
+    },
+    {
+      "id": "w3schools",
+      "name": "W3Schools",
+      "src": "si:w3schools",
+      "epitaph": "Tutorial? Ask the AI."
+    },
+    {
+      "id": "slideshare",
+      "name": "SlideShare",
+      "src": "si:slideshare",
+      "epitaph": "Deck generated in one prompt."
+    },
+    {
+      "id": "prezi",
+      "name": "Prezi",
+      "src": "si:prezi",
+      "epitaph": "Slides make themselves."
+    },
+    {
+      "id": "tinder",
+      "name": "Tinder",
+      "src": "si:tinder",
+      "epitaph": "Even the flirting is generated."
+    },
+    {
+      "id": "intuit",
+      "name": "Intuit",
+      "src": "si:intuit",
+      "epitaph": "Taxes filed by the agent."
+    },
+    {
+      "id": "producthunt",
+      "name": "Product Hunt",
+      "src": "si:producthunt",
+      "epitaph": "1,000 GPT wrappers a day."
+    }
+  ]
+}
